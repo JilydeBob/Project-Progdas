@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="leve.css">
+</head>
+</html>
+<html>
+<head>
+    <title>Form Input Master dan Stock Data Barang</title>
+  
+</head>
+<body>
+    <h1>FORM INPUT MASTER dan Stock DATA BARANG</h1>
+    <form id="product-form">
+        <label for="kode-produk">Kode Produk</label>
+        <input type="text" id="kode-produk" name="kode-produk" value="MD-001">
+
+        <label for="nama-produk">Nama Produk</label>
+        <input type="text" id="nama-produk" name="nama-produk" placeholder="Nama Produk ex. Jus Jambu">
+
+        <label for="harga-produk">Harga Produk</label>
+        <input type="number" id="harga-produk" name="harga-produk" value="10000">
+
+        <label for="satuan">Satuan</label>
+        <input type="text" id="satuan" name="satuan" value="Gelas">
+
+        <label for="kategori">Kategori</label>
+        <input type="text" id="kategori" name="kategori" value="Minuman Dingin">
+
+        <label for="url-gambar">URL Gambar</label>
+        <input type="text" id="url-gambar" name="url-gambar" value="http://goo.gle.com/picture.png">
+
+        <label for="stok-awal">Stok Awal</label>
+        <input type="number" id="stok-awal" name="stok-awal" value="100">
+
+        <button type="submit">Simpan</button>
+    </form>
+
+    <h2>Data Produk</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kode Produk</th>
+                <th>Nama Produk</th>
+                <th>Harga Produk</th>
+                <th>Satuan</th>
+                <th>Kategori Produk</th>
+                <th>Stok Produk</th>
+                <th>Gambar Produk</th>
+                <th>Modify</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="product-table-body">
+        </tbody>
+    <script src="leve.js">
+
+    </script>
+
+</body>
+</html>
