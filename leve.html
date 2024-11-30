@@ -1,65 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+ <lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="leve.css">
-</head>
-</html>
-<html>
-<head>
-    <title>Form Input Master dan Stock Data Barang</title>
+    <title>Jily | Form Barang</title>
+    <style>
+      body {
+      background: linear-gradient(135deg, #C2FFC7, #9EDF9C, #62825D, #526E48);
+      font-family: Arial, sans-serif;
+      color: #333;
+      padding: 20px;
+      }
   
-</head>
-<body>
-    <h1>FORM INPUT MASTER dan Stock DATA BARANG</h1>
-    <form id="product-form">
-        <label for="kode-produk">Kode Produk</label>
-        <input type="text" id="kode-produk" name="kode-produk" value="MD-001">
+ 
+  
 
-        <label for="nama-produk">Nama Produk</label>
-        <input type="text" id="nama-produk" name="nama-produk" placeholder="Nama Produk ex. Jus Jambu">
+     .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: slideIn 0.8s ease-in-out;
+      }
 
-        <label for="harga-produk">Harga Produk</label>
-        <input type="number" id="harga-produk" name="harga-produk" value="10000">
+ 
 
-        <label for="satuan">Satuan</label>
-        <input type="text" id="satuan" name="satuan" value="Gelas">
+ 
 
-        <label for="kategori">Kategori</label>
-        <input type="text" id="kategori" name="kategori" value="Minuman Dingin">
 
-        <label for="url-gambar">URL Gambar</label>
-        <input type="text" id="url-gambar" name="url-gambar" value="http://goo.gle.com/picture.png">
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #f8f9fa;
+            transition: border-color 0.3s ease;
+        }
 
-        <label for="stok-awal">Stok Awal</label>
-        <input type="number" id="stok-awal" name="stok-awal" value="100">
+        
+        .btn:focus {
+            outline: none;
+        }
 
-        <button type="submit">Simpan</button>
-    </form>
+        .table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            animation: fadeInRow 0.5s ease-in-out;
+        }
 
-    <h2>Data Produk</h2>
-    <table>
+      
+
+        .table th, .table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #62825D;
+            color: white;
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2 class="centered-text">FORM INPUT MASTER dan Stock DATA BARANG</h2>
+
+      <form id="productForm" class="form">
+        <label>Kode Produk</label>
+        <input type="text" id="kodeProduk" readonly /><br /><br />
+
+        <label>Nama Produk</label>
+        <input
+          type="text"
+          id="namaProduk"
+          placeholder="Nama Produk ex. Jus Jambu"
+        /><br /><br />
+
+        <label>Harga Produk</label>
+        <input type="number" id="hargaProduk" placeholder="10000" /><br /><br />
+
+        <label>Satuan</label>
+        <select id="satuan">
+          <option value="Gelas">Gelas</option>
+          <option value="Pcs">Pcs</option>
+          <option value="Kardus">Kardus</option></select
+        ><br /><br />
+
+        <label>Kategori</label>
+        <select id="kategori">
+          <option value="Minuman Dingin">Minuman Dingin</option>
+          <option value="Snack">Snack</option>
+          <option value="Makanan Berat">Makanan Berat</option></select
+        ><br /><br />
+
+        <label>URL Gambar</label>
+        <input
+          type="text"
+          id="urlGambar"
+          placeholder="http://goo.gle.com/picture.png"
+        /><br /><br />
+
+        <label>Stok Awal</label>
+        <input
+          type="number"
+          id="stokAwal"
+          placeholder="100"
+          min="0"
+        /><br /><br />
+
+        <button type="button" onclick="saveProduct()" class="button w-full">
+          Simpan
+        </button>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="centered-text">Data Produk</h2>
+      <table id="productTable" class="table">
         <thead>
-            <tr>
-                <th>No</th>
-                <th>Kode Produk</th>
-                <th>Nama Produk</th>
-                <th>Harga Produk</th>
-                <th>Satuan</th>
-                <th>Kategori Produk</th>
-                <th>Stok Produk</th>
-                <th>Gambar Produk</th>
-                <th>Modify</th>
-                <th>Delete</th>
-            </tr>
+          <tr>
+            <th>No</th>
+            <th>Kode Produk</th>
+            <th>Nama Produk</th>
+            <th>Harga Produk</th>
+            <th>Satuan</th>
+            <th>Kategori Produk</th>
+            <th>Stok Produk</th>
+            <th>Gambar Produk</th>
+            <th>Modify</th>
+          </tr>
         </thead>
-        <tbody id="product-table-body">
+        <tbody>
+          <!-- Data produk akan ditambahkan di sini -->
         </tbody>
-    <script src="leve.js">
+      </table>
+    </section>
 
+    <script>
+      let productArray = [];
+      let kodeIncrement = 1;
+      let isEditing = false;
+      let editIndex = null;
+
+      // Fungsi untuk menyimpan produk ke array dan memperbarui tabel
+      function saveProduct() {
+        const namaProduk = document.getElementById("namaProduk").value;
+        const hargaProduk = document.getElementById("hargaProduk").value;
+        const satuan = document.getElementById("satuan").value;
+        const kategori = document.getElementById("kategori").value;
+        const urlGambar = document.getElementById("urlGambar").value;
+        const stokAwal = parseInt(document.getElementById("stokAwal").value);
+
+        // Validasi data produk yang masuk
+        if (!(namaProduk && hargaProduk && satuan && kategori && stokAwal)) {
+          // Tampilkan alert box
+          alert("Teradapat data kosong");
+
+          // Cancel proses selanjutnya
+          return null;
+        }
+
+        if (isEditing) {
+          // Mode Edit: Update produk yang ada
+          productArray[editIndex] = {
+            kodeProduk: productArray[editIndex].kodeProduk, // tidak mengubah kode produk
+            namaProduk,
+            hargaProduk,
+            satuan,
+            kategori,
+            urlGambar,
+            stokAwal,
+          };
+          isEditing = false; // keluar dari mode edit
+          editIndex = null;
+        } else {
+          // Mode Tambah: Tambahkan produk baru ke array
+          const kodeProduk = "MD-" + String(kodeIncrement).padStart(3, "0");
+          productArray.push({
+            kodeProduk,
+            namaProduk,
+            hargaProduk,
+            satuan,
+            kategori,
+            urlGambar,
+            stokAwal,
+          });
+          kodeIncrement++;
+        }
+
+        // Bersihkan form setelah submit
+        document.getElementById("productForm").reset();
+
+        // Perbarui tabel dengan data terbaru
+        renderTable();
+
+        // Set kode produk berikutnya pada form
+        document.getElementById("kodeProduk").value =
+          "MD-" + String(kodeIncrement).padStart(3, "0");
+      }
+
+      // Fungsi untuk menampilkan data dari array ke tabel
+      function renderTable() {
+        const tableBody = document
+          .getElementById("productTable")
+          .getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = ""; // Kosongkan tabel sebelum render ulang
+
+        productArray.forEach((product, index) => {
+          const row = tableBody.insertRow();
+
+          // Cek jika stok kurang dari 5, tambahkan kelas 'low-stock'
+          const stokClass = product.stokAwal < 5 ? "low-stock" : "";
+
+          row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${product.kodeProduk}</td>
+                <td>${product.namaProduk}</td>
+                <td>${product.hargaProduk}</td>
+                <td>${product.satuan}</td>
+                <td>${product.kategori}</td>
+                <td class="${stokClass}">${product.stokAwal}</td>
+                <td><img src="${
+                  product.urlGambar
+                }" alt="Gambar Produk" width="50" height="50"></td>
+                <td><button onclick="editProduct(${index})" class="button">Edit</button> <button onclick="deleteProduct(${index})" class="button">Delete</button></td>
+            `;
+        });
+      }
+
+      // Fungsi untuk mengedit produk
+      function editProduct(index) {
+        const product = productArray[index];
+
+        // Isi form dengan data produk yang akan diedit
+        document.getElementById("kodeProduk").value = product.kodeProduk;
+        document.getElementById("namaProduk").value = product.namaProduk;
+        document.getElementById("hargaProduk").value = product.hargaProduk;
+        document.getElementById("satuan").value = product.satuan;
+        document.getElementById("kategori").value = product.kategori;
+        document.getElementById("urlGambar").value = product.urlGambar;
+        document.getElementById("stokAwal").value = product.stokAwal;
+
+        // Set mode edit dan simpan indeks produk yang sedang diedit
+        isEditing = true;
+        editIndex = index;
+      }
+
+      // Fungsi untuk menghapus produk
+      function deleteProduct(index) {
+        // Hapus produk dari array dan perbarui tabel
+        productArray.splice(index, 1);
+        renderTable();
+      }
+
+      // Set nilai awal kode produk pada form
+      document.getElementById("kodeProduk").value =
+        "MD-" + String(kodeIncrement).padStart(3, "0");
     </script>
-
-</body>
+  </body>
 </html>
